@@ -1,4 +1,3 @@
-
 server:
   port: 9090
 
@@ -9,7 +8,6 @@ spring:
   cloud:
     gateway:
       routes:
-
         - id: movie-service-route
           uri: lb://movie-services
           predicates:
@@ -19,9 +17,6 @@ spring:
           uri: lb://booking-service
           predicates:
             - Path=/bookings/**
-
-      default-filters:
-        - AddResponseHeader=X-Response-Time, ${date}
 
 eureka:
   client:
@@ -40,6 +35,9 @@ management:
       probability: 1.0
 
 logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.moviebooking: DEBUG
   level:
     org.springframework.cloud.gateway: DEBUG
     com.moviebooking: DEBUG
